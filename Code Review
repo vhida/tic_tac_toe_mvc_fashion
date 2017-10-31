@@ -1,0 +1,47 @@
+HW01 Report
+1. Violating principle of Encapsulation:
+Summary : Different aspects or concerns should be separated, decoupled, modularized, for better
+extensibility, security, and maintenance.
+Issue : This cold has no clue of encapsulation. Display, logic, and data are totally mixed up, all
+crammed into single class.
+Fix: Separate codes into components of Model, View and Controller, based on their functionalities.
+Separate data and logic.
+2. No proper Information Hiding
+Summary : Information Hiding is to reveal as little information about internals as possible, to segregate
+public interface and implementation details, and to reduce complexity, so that the code is more robust,
+extensible, and secure.
+Issue : The first impression is this software does not follow the encapsulation principle at all.
+Everything is public can be accessed with an access to the instance and all details are exposed to
+external users.
+Fix:
+3. Violating Open/Closed principle
+Summary: A good practice that follows Open/Closed principle should be open to extension and closed
+for modification. In this way, code re-usage can be increased and the code more robust and extensible.
+Issue : Obviously any piece of code, for example, all variables are public, access to an instance of the
+class means access to any variable and all variables can be freely modified. And since the code is not
+modularized at all, it’s very hard to extend any functionality without rewrite much of the code.
+Probably you have to go through the forest of the constructor to make any changes.
+Fix :
+Adopt Aspect-Oriented Programming, that is, modularize each components and expose only the
+necessary API to external users, so that new modules can be plugged in according to exposed API, and
+an external user has no means to modify internal implementations.
+4. No inheritance or composition or aggregation
+Summary: Inheritance, composition and aggregation make the code more re-usable, and more
+structured, good for extension and maintenance. Usually composition/aggregation should come over
+inheritance as they offer more flexibility and configurability.
+Issue: This TicTacToe implementation has no inheritance composition or aggregation at all
+Fix: The View component can be a composition of display units.
+
+Implementation:
+Using a different visualization (View) for the game board without changing the model or the
+controllers.
+Using a different data representation (Model) without changing the view or the controllers.
+Reading game moves from other sources (e.g., reading from the command line).
+These 3 are fulfilled in my re-implementation which follows a decoupled MVC paradigm.
+The first 2 can be done as :
+In the new implementation, View is just the displaying units like Jpanel Jbutton and such and their
+initializations and some getter functions(to communicate with Model) ; Model is storing data,
+specifically game state and reset. Controller is just listeners to View via Model.
+The last 1:
+Adding move sequence as a state to the Model or simply call click() on a specific cell based on the
+input.
